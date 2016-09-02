@@ -1,5 +1,5 @@
-var image_x = 0;
-var image_y = 0;
+var image_x = 500;
+var image_y = 200;
 var number_img = 4;
 var originalCanvasWidth;
 var originalCanvasHeight;
@@ -50,7 +50,7 @@ function draw() {
 }
 
 function displayImage(){
-  image(img_list[i], image_x, image_y, scaling(img_list[i]).x, scaling(img_list[i]).y);
+  image(img_list[i], scalingPosition(img_list[i]).x, scalingPosition(img_list[i]).y, scaling(img_list[i]).x, scaling(img_list[i]).y);
 }
 
 // Scales images width & height proportionnally to the widht of the screen
@@ -61,4 +61,12 @@ function scaling(img){
   var img_size = createVector(scaled_img_width,scaled_img_height);
 
   return img_size; //returns vector(width, height, 0)
+}
+
+function scalingPosition(img){
+  scaled_img_x = (windowWidth*image_x)/originalCanvasWidth;
+  scaled_img_y = (scaled_img_x*image_y)/image_x;
+
+  var img_position = createVector(scaled_img_x,scaled_img_y);
+  return img_position;
 }
